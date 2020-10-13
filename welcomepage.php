@@ -1,6 +1,6 @@
 <?
 // include the verification PHP script
-include "verifysession.php";
+include "verifysession_proj.php";
 
 if ($sessionid == "") { 
   // no active session - clientid is unknown

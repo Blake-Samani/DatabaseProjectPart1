@@ -19,7 +19,7 @@ else {
   else{ 
     // lookup the sessionid in the session table to get the clientid 
     $sql = "select clientid " .
-       "from clientsession " .
+       "from clientsesh " .
        "where sessionid='$sessionid'";  
 
     $cursor = oci_parse($connection, $sql);

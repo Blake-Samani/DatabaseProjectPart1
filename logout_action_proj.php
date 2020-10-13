@@ -1,12 +1,12 @@
 <?
-include "utility_functions.php";
+include "utility_functions_proj.php";
 
 $sessionid =$_GET["sessionid"];
 verify_session($sessionid);
 
 
 // connection OK - delete the session.
-$sql = "delete from myclientsession where sessionid = '$sessionid'";
+$sql = "delete from clientsesh where sessionid = '$sessionid'";
 
 $result_array = execute_sql_in_oracle ($sql);
 $result = $result_array["flag"];

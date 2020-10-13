@@ -1,5 +1,5 @@
 <?
-include "utility_functions.php";
+include "utility_functions_proj.php";
 
 // Get the client id and password and verify them
 $clientid = $_POST["clientid"];
@@ -31,7 +31,7 @@ if($values = oci_fetch_array ($cursor)){
   // store the link between the sessionid and the clientid
   // and when the session started in the session table
 
-  $sql = "insert into myclientsession " .
+  $sql = "insert into clientsesh " .
     "(sessionid, clientid, sessiondate) " .
     "values ('$sessionid', '$clientid', sysdate)";
 
@@ -45,26 +45,16 @@ if($values = oci_fetch_array ($cursor)){
   if ($result == false){
     display_oracle_error_message($cursor);
     die("Failed to create a new session");
+  } else {
+    // insert OK - we have created a new session
+    header("Location:adminpage.php?sessionid=$sessionid");
   }
-
-  //ORIGINAL CODE
-  // else {
-  //   // insert OK - we have created a new session
-  //   header("Location:welcomepage.php?sessionid=$sessionid");
-  // }
 }
 else { 
   // client username not found
   die ('Login failed.  Click <A href="login.html">here</A> to go back to the login page.');
 }
 
-// INSERT EXIST QUERY FOR CHECKING ADMIN PRIVLEGES
-// Logic
-// if the userid exists within the admind table, push to admin page
-// if the userid exists within student admin table, push to student admin page
-// if the userid exists within the sudent user table, push to student user page
 
-$sql = "select userid ".
-      "from pageuser ".
-      "where exists (select * from adminuser where auserid = userid)";
+
 ?>

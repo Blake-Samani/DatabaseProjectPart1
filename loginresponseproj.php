@@ -48,7 +48,7 @@ $sessionid = md5(uniqid(rand()));
 // store the link between the sessionid and the clientid
 // and when the session started in the session table
 
-$sql = "insert into clientsession " .
+$sql = "insert into clientsesh " .
   "(sessionid, clientid, sessiondate) " .
   "values ('$sessionid', '$clientid', sysdate)";
 
@@ -74,5 +74,9 @@ if ($result == false){
 //oci_commit ($connection);
 oci_close ($connection);
 // jump to your welcome page
+
+$sql = // exists query
+//if [o] = 'a'
+
 Header("Location:welcomepage.php?sessionid=$sessionid");
 ?>

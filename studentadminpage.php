@@ -1,6 +1,6 @@
 <?
 
-include "verifysession.php";
+include "verifysession_proj.php";
 
 if($sessionid == "")
 {
