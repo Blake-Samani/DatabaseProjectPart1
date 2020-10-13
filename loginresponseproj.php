@@ -1,5 +1,6 @@
 <?
 $clientid = $_POST["clientid"];
+$clientpw = $_POST["password"];
 
 $connection = oci_connect ("gq008", "mjbrwe", "gqiannew2:1521/pdborcl");
 if($connection == false){
@@ -8,9 +9,9 @@ if($connection == false){
 }
 
 // connection OK - lookup the client
-$sql = "select userid " .
+$sql = "select userid, passw " .
       "from pageuser " .
-      "where userid='$clientid'";
+      "where userid='$clientid' and passw ='$clientpw' ";
 $cursor = oci_parse($connection, $sql);
 
 if ($cursor == false) {
@@ -133,9 +134,9 @@ oci_free_statement($cursor);
 oci_close ($connection);
 // exists query
 if($accounttype == 1){
-  Header("Location:adminpage.php?sessionid=$sessionid");
+  Header("Location:adminwelcome.html?sessionid=$sessionid");
 }else if($accounttype == 0){
-  Header("Location:studentpage.php?sessionid=$sessionid");
+  Header("Location:studentwelcome.html?sessionid=$sessionid");
 }
 
 // Header("Location:welcomepage.php?sessionid=$sessionid");

@@ -17,5 +17,5 @@ if ($result == false){
 }
 
 // jump to login page
-header("Location:login.html");
+header("Location:loginproj.html");
 ?>
