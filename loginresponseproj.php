@@ -128,7 +128,7 @@ echo "</table>";
 
 // free up resources used by the cursor
 // oci_free_statement($cursor);
-
+oci_free_statement($cursor);
 // close the connection with oracle
 oci_close ($connection);
 // exists query
