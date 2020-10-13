@@ -45,10 +45,10 @@ if($values = oci_fetch_array ($cursor)){
   if ($result == false){
     display_oracle_error_message($cursor);
     die("Failed to create a new session");
-  } else {
-    // insert OK - we have created a new session
-    header("Location:adminpage.php?sessionid=$sessionid");
-  }
+  // } else {
+  //   // insert OK - we have created a new session
+  //   header("Location:adminpage.php?sessionid=$sessionid");
+  // }
 }
 else { 
   // client username not found
