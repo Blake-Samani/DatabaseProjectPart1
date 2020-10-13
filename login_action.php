@@ -64,6 +64,7 @@ else {
 // if the userid exists within student admin table, push to student admin page
 // if the userid exists within the sudent user table, push to student user page
 
-$sql = "select "
-
+$sql = "select userid ".
+      "from pageuser ".
+      "where exists (select * from adminuser where auserid = userid)";
 ?>
