@@ -5,10 +5,10 @@ include "utility_functions.php";
 $clientid = $_POST["clientid"];
 $password = $_POST["password"];
 
-$sql = "select clientid " .
-       "from myclient " .
-       "where clientid='$clientid'
-         and password ='$password'";
+$sql = "select userid " .
+       "from pageuser " .
+       "where userid='$clientid'
+         and passw ='$password'";
 
 $result_array = execute_sql_in_oracle ($sql);
 $result = $result_array["flag"];

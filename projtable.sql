@@ -12,11 +12,11 @@ create table pageuser (
   lname varchar2(30)
 );
 
-create table pageusersession (
+create table clientsession (
   sessionid varchar2(32) primary key,
-  userid varchar2(8),
+  clientid varchar2(8),
   sessiondate date,
-  foreign key (userid) references pageuser
+  foreign key (clientid) references pageuser
 );
 
 create table adminuser (

@@ -8,9 +8,9 @@ if($connection == false){
 }
 
 // connection OK - lookup the client
-$sql = "select clientid " .
-      "from client " .
-      "where clientid='$clientid'";
+$sql = "select userid " .
+      "from pageuser " .
+      "where userid='$clientid'";
 $cursor = oci_parse($connection, $sql);
 
 if ($cursor == false) {
@@ -70,55 +70,9 @@ if ($result == false){
   die("Failed to create a new session");
 }
 
-
-
-oci_free_statement($cursor);
-
-$sql = "select * from client where clientid = $clientid";
-
-$cursor = oci_parse($connection, $sql);
-
-
-
-// if($cursor == false){
-//     $e = oci_error($connection);
-//     echo $e['message']."<BR>"
-//     oci_close ($connection);
-//   insert Failed
-//   die ("STATEMENT SUCKS")
-// }
-  
-$result = oci_execute($cursor);
-
-// if ($result == false){
-//   $e = oci_error($cursor);
-//   echo $e['message']."<BR>";
-//   oci_close($connection);
-//   die("Failed to create a new session");
-// }
-
-
-while ($values = oci_fetch_array ($cursor)){
-    $id = $values[0];
-    $name = $values[1];
-    $password = $values[2];
-    $type = $values[3];
-  
-}
-
-
-  
-
 // insert OK - we have created a new session
 //oci_commit ($connection);
 oci_close ($connection);
 // jump to your welcome page
-
-// if($type['A'] == 'type')
-// if($type["A"] == "type"){
-//if($type["type"] == "A"){
 Header("Location:welcomepage.php?sessionid=$sessionid");
-// }
-
 ?>
-
