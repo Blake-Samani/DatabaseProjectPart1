@@ -14,7 +14,7 @@ create table pageuser (
 
 create table clientsession (
   sessionid varchar2(32) primary key,
-  clientid varchar2(8),
+  clientid varchar2(20),
   sessiondate date,
   foreign key (clientid) references pageuser
 );
