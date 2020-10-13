@@ -20,17 +20,17 @@ create table pageusersession (
 );
 
 create table adminuser (
-  auserid varchar2(8) primary key,
+  auserid varchar2(20) primary key,
   foreign key (auserid) references pageuser
 );
 
 create table studentadminuser (
-  sauserid varchar2(8) primary key,
+  sauserid varchar2(20) primary key,
   foreign key (sauserid) references pageuser
 );
 
 create table studentuser (
-  suserid varchar2(8) primary key,
+  suserid varchar2(20) primary key,
   foreign key (suserid) references pageuser
 );
  
@@ -39,3 +39,4 @@ insert into pageuser values ('testMary', 'passTest','Mary', 'Hairy');
 insert into pageuser values ('testBary', 'passTest', 'Bary','Scary');
 insert into pageuser values ('testBlake', 'passTest','Blake','Samani');
 insert into pageuser values ('testJo', 'passTest', 'Jo', 'Momma');
+insert into adminuser values ('testBlake');
