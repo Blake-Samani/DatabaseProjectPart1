@@ -2,7 +2,7 @@
 include "utility_functions_proj.php";
 
 $sessionid =$_GET["sessionid"];
-verify_session($sessionid);
+// verify_session($sessionid);
 
 
 // connection OK - delete the session.
