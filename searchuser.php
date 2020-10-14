@@ -40,7 +40,7 @@ while ($nuvalues = oci_fetch_array ($cursor)){
   $passw = $nuvalues[1];
   $fname = $nuvalues[2];
   $lname = $nuvalues[3];
-  $accounttype = $nuvalues[0];
+  $accounttype = $nuvalues[4];
 
   echo "<tr><td>$userid</td> <td>$passw</td> <td>$fname</td>" .
         "<td>$lname</td> <td>$accounttype</td> </tr>";
