@@ -4,19 +4,40 @@
     </head>
             
     <body>
+    
+    
     <p> Welcome to the Administrator Page</p>
+
+  
+
     <FORM name="Search" method="POST" action="searchuser.php"> 
         Search User ID: <INPUT type="text" name="clientid"> 
         <INPUT type="submit" name="submit" value="Search"> 
     </FORM>
-    <FORM action="deleteuser.php" method="POST">
+    <FORM name="Delete" method="POST" action="deleteuser.php">
         Delete User: <INPUT type ="text" name="clientid">
         <INPUT type="submit" name="submit" value="Delete"> 
     </FORM>
-    <form action="search_all.php" method="POST">
-        List all users: <button>List</button>
+    <form name="List" method="POST" action="search_all.php">
+        <button type="submit" name="submit" value="List"> 
     </form>
-
+    <form method="post"> 
+        <input type="submit" name="button1"
+                class="button" value="Button1" /> 
+          
+        <input type="submit" name="button2"
+                class="button" value="Button2" /> 
+    </form> 
+    
+    <?php
+      
+    if(isset($_POST['button1'])) { 
+        $connection = oci_connect ("gq008", "mjbrwe", "gqiannew2:1521/pdborcl");
+    } 
+    if(isset($_POST['button2'])) { 
+        echo "This is Button2 that is selected"; 
+    } 
+?> 
     <!-- <p>&nbsp;</p>
         <button>Add</button>
         <button>Delete</button>

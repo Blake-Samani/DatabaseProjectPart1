@@ -26,3 +26,11 @@ CREATE TABLE clientsesh (
 insert into pageuser values ('testMary', 'passTest','Mary', 'Hairy', 0);
 insert into pageuser values ('testBary', 'passTest', 'Bary','Scary', 0);
 insert into pageuser values ('testBlake', 'passTest','Blake','Samani', 1);
+insert into pageuser values ('testMary', 'passTest','Mary', 'Hairy', 0);
+insert into pageuser values ('testBary', 'passTest', 'Bary','Scary', 0);
+insert into pageuser values ('testBlake', 'passTest','Blake','Samani', 1);
+insert into pageuser values ('testLe', 'passTest','Leticia','Hameury', 1);
+insert into pageuser values ('testJamie', 'passTest','Jamie','Worcester', 1);
+insert into pageuser values ('testKhaled', 'passTest','Mohammad','Khaled', 1);
+insert into pageuser values ('testBlake2', 'passTest','Blake2','Samani2', 1);
+insert into pageuser values ('testBlake3', 'passTest','Blake3','Samani3', 0);
