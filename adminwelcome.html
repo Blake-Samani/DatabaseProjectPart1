@@ -7,10 +7,16 @@
     <p> Welcome to the Administrator Page</p>
     <FORM name="Search" method="POST" action="searchuser.php"> 
         Search User ID: <INPUT type="text" name="clientid"> 
-        <INPUT type="submit" name="submit" value="Search">
+        <INPUT type="submit" name="submit" value="Search"> 
+    </FORM>
+    <FORM>
         Delete User: <INPUT type ="text" name="clientid">
         <INPUT type="submit" name="submit" value="Delete"> 
     </FORM>
+    <form action="/search_all.php" method="POST">
+        List all users: <button name ="List All" type="submit"></button>
+    </form>
+
     <!-- <p>&nbsp;</p>
         <button>Add</button>
         <button>Delete</button>
