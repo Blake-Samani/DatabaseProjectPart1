@@ -4,6 +4,7 @@ $sessionid =$_GET["sessionid"];
 $clientid = ""; 
 
 $connection = oci_connect ("gq008", "mjbrwe", "gqiannew2:1521/pdborcl");
+oci_free_statement($cursor);
 
 if($connection == false){
   $e = oci_error(); 

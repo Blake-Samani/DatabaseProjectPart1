@@ -54,10 +54,10 @@
         <INPUT type="submit" name="resetpassword" value="Reset Password">
     </FORM>
     
-    <FORM name="Logout" method="GET" action ="logout_action_proj.php"> 
-        Logout: 
-        <INPUT type="submit" name="logout" value="logout">
-    </FORM>
+    <form method="POST" action="logout_action_proj.php">
+        <button type="submit" >Logout</button>
+        </form>
+    
     <?php
       
     if(isset($_POST['button1'])) { 
@@ -202,11 +202,19 @@
 
         echo "$sessionid";
 
-        $query = "UPDATE pageuser " .
-        "JOIN clientsesh" .
-        "ON pageuser.userid = clientsesh.clientid ".
-        "SET pageuser.passw = '$password'" .
-        "WHERE clientsesh.sessionid = '$sessionid' ";
+        $connection = oci_connect ("gq008", "mjbrwe", "gqiannew2:1521/pdborcl");
+        if ($connection == false){
+        // For oci_connect errors, no handle needed
+        $e = oci_error(); 
+        die($e['message']);
+        }
+
+    $query = "UPDATE paguser " .
+            "SET " .
+            "passw = '$password' " .
+            "WHERE userid IN (SELECT * FROM clientsesh WHERE session = '$sessionid') ";
+                    
+            
 
         $cursor = oci_parse ($connection, $query);
         if ($cursor == false){
@@ -262,6 +270,7 @@
         oci_close ($connection);
 
             }
+
 
 
    

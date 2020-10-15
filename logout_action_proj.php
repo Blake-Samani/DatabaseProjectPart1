@@ -1,21 +1,25 @@
 <?
-include "utility_functions_proj.php";
+ 
+ // setup connection with Oracle
+ $connection = oci_connect ("gq008", "mjbrwe", "gqiannew2:1521/pdborcl");
+ if ($connection == false){
+ // For oci_connect errors, no handle needed
+ $e = oci_error(); 
+ die($e['message']);
+ }
+ $sesh =$_GET["sessionid"];
+ echo $sesh;
 
-$sessionid =$_GET["sessionid"];
-// verify_session($sessionid);
 
 
-// connection OK - delete the session.
-$sql = "delete from clientsesh where sessionid = '$sessionid'";
+ // this is the SQL command to be executed
 
-$result_array = execute_sql_in_oracle ($sql);
-$result = $result_array["flag"];
-$cursor = $result_array["cursor"];
-if ($result == false){
-  display_oracle_error_message($cursor);
-  die("Session removal failed");
-}
 
-// jump to login page
-header("Location:loginproj.html");
+
+//  oci_commit ($connection);
+ 
+ // close the connection with oracle
+ oci_close ($connection);
+
+//  Header("Location:loginproj.html"); 
 ?>

@@ -1,10 +1,11 @@
 <?
 include "utility_functions_proj.php";
 
-$sessionid =$_GET["sessionid"];
+$sessionid = $_GET["sessionid"];
+$clientid = $_GET["clientid"];
 verify_session($sessionid);
 
-$password = $_POST["password"];
+$password = $_GET["password"];
 
 $connection = oci_connect ("gq008", "mjbrwe", "gqiannew2:1521/pdborcl");
 if ($connection == false){
@@ -19,13 +20,11 @@ if ($connection == false){
 //         "pageuser JOIN clientsesh ON userid = clientid " .
 //         "WHERE sessionid = '$sessionid'";
 
-$query = "UPDATE p" .
-"SET p.passw = '$password'" .
-"FROM pageuser p" .
-"JOIN clientsesh c ON c.clientid = p.userid" .
-"WHERE sessionid = '$sessionid'" .
+$query = "UPDATE pageuser" .
+            "SET passw = '$password'" .
+            "WHERE userid = '$clientid'";
 
-$cursor = oci_parse ($connection, $query);
+        $cursor = oci_parse ($connection, $query);
 if ($cursor == false){
            
 $e = oci_error($connection);  
@@ -46,22 +45,7 @@ echo "<tr> <th>userid</th> <th>passw</th> <th>fname</th>" .
       "<th>lname</th> <th>accounttype</th> </tr>";
 
 // fetch the result from the cursor one by one
-while ($nuvalues = oci_fetch_array ($cursor)){
-  $userid = $nuvalues[0];
-  $passw = $nuvalues[1];
-  $fname = $nuvalues[2];
-  $lname = $nuvalues[3];
-  $accounttype = $nuvalues[4];
-  $sessionid = $nuvalues[5];
-  $clientid = $nuvalues[6];
-  $date = $nuvalues[7];
 
-  echo "<tr><td>$userid</td> <td>$passw</td> <td>$fname</td>" .
-        "<td>$lname</td> <td>$accounttype</td> <td>$sessionid</td>  <td>$clientid</td> ".
-        "<td>$date</td>  </tr>";
-}
-
-echo "</table>";
 
 oci_free_statement($cursor);
 oci_close ($connection);
