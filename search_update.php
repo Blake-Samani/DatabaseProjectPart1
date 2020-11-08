@@ -1,6 +1,6 @@
 <?
 $clientid = $_POST["clientid"];
-$sessionid = $_GET["sessionid"];
+
 // setup connection with Oracle
 $connection = oci_connect ("gq008", "mjbrwe", "gqiannew2:1521/pdborcl");
 if ($connection == false){
@@ -47,7 +47,23 @@ while ($nuvalues = oci_fetch_array ($cursor)){
         "<td>$lname</td> <td>$accounttype</td> </tr>";
 }
 
-echo "</table>";
+echo ("</table>
+<br>
+<br>
+<FORM name='Update User' method='POST' action ='search_update_action.php'> 
+Update User: <INPUT type='text' name='clientid' placeholder='user id' required>
+<br>
+<br>
+Type the same user information if you dont want to change a field:
+    <br>
+    <br>
+    <INPUT type='text' name='newid' placeholder='New User ID' required>
+    <INPUT type='text' name='passw' placeholder='password' required>
+        <INPUT type='text' name='fname' placeholder='first name' required> 
+            <INPUT type='text' name='lname' placeholder='last name' required> 
+                <INPUT type='text' name='accttype'placeholder='account type' required> 
+                     <INPUT type='submit' name='userupdate' value='Update'></FORM>
+");
 
 // free up resources used by the cursor
 oci_free_statement($cursor);

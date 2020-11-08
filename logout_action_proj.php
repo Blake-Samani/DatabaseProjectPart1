@@ -1,25 +1,36 @@
 <?
+
+ $sessionid = $_GET["sessionid"];
  
- // setup connection with Oracle
+
  $connection = oci_connect ("gq008", "mjbrwe", "gqiannew2:1521/pdborcl");
  if ($connection == false){
- // For oci_connect errors, no handle needed
+
  $e = oci_error(); 
  die($e['message']);
  }
- $sesh =$_GET["sessionid"];
- echo $sesh;
-
-
-
- // this is the SQL command to be executed
-
-
-
-//  oci_commit ($connection);
  
- // close the connection with oracle
- oci_close ($connection);
 
-//  Header("Location:loginproj.html"); 
+ $sql = "DELETE FROM clientsesh WHERE sessionid='$sessionid'";
+
+      $cursor = oci_parse ($connection, $sql);
+      if ($cursor == false){
+       
+         $e = oci_error($connection);
+         die($e['message']);
+      }
+
+      $result = oci_execute ($cursor);
+      if ($result == false){
+
+         $e = oci_error($cursor);
+         die($e['message']);
+      }
+
+      oci_free_statement($cursor);
+
+
+
+ oci_close ($connection);
+ Header("Location:loginproj.html"); 
 ?>

@@ -1,5 +1,7 @@
 <?
- $clientid = $_POST["clientid"];
+
+$clientid = $_POST["clientid"];
+$newclientid = $_POST["newid"];
  $password = $_POST["passw"];
  $firstname = $_POST["fname"];
  $lastname = $_POST["lname"];
@@ -12,9 +14,7 @@
  die($e['message']);
  }
 
- $query = "UPDATE pageuser " .
-      "set userid = '$clientid', passw = '$password', fname = '$firstname', lname = '$lastname', accttype = '$accounttype' ".
-      "WHERE userid = '$clientid'";
+ $query = "UPDATE pageuser SET userid = '$newclientid', passw = '$password', fname = '$firstname', lname = '$lastname', accttype = '$accounttype' WHERE userid = '$clientid'";
 
  $cursor = oci_parse ($connection, $query);
  if ($cursor == false){
@@ -30,5 +30,5 @@
 
  oci_free_statement($cursor);
  oci_close ($connection);
- Header("Location:adminpage.php?sessionid=$sessionid");
-?>
+ Header("Location:adminpage.php?");
+ ?>

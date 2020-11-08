@@ -55,24 +55,24 @@ function execute_sql_in_oracle($sqlAr) {
 //********************
 function verify_session($sessionid) {
   // lookup the sessionid in the session table to ascertain the clientid 
-  $sql = "select clientid " .
-    "from clientsesh " .
-    "where sessionid='$sessionid'";  
+  $sql = "SELECT clientid FROM clientsesh WHERE sessionid='$sessionid'";  
 
-  $result_array = execute_sql_in_oracle ($sql);
-  $result = $result_array["flag"];
-  $cursor = $result_array["cursor"];
+ 
+  $cursor = oci_parse($connection, $sql);
 
+  if ($cursor == false) {
+    display_oracle_error_message($connection);
+    oci_close ($connection);
+    // sql failed 
+    die("SQL Parsing Failed");
+  }
   $result = oci_execute($cursor);
   if ($result == false){
     display_oracle_error_message($cursor);
     die("SQL Execution problem.");
   }
 
-  if(!($values = oci_fetch_array ($cursor))){
-    // no active session - clientid is unknown
-    die("Invalid client!");
-  } 
+ 
   oci_free_statement($cursor);
 } 
 

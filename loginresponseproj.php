@@ -118,9 +118,9 @@ oci_free_statement($cursor);
 oci_close ($connection);
 // exists query
 if($accounttype == 1){
-  Header("Location:adminwelcome.html?sessionid=$sessionid");
+  Header("Location:adminpage.php?sessionid=$sessionid");
 }else if($accounttype == 0){
-  Header("Location:studentwelcome.html?sessionid=$sessionid");
+  Header("Location:studentpage.php?sessionid=$sessionid");
 }
 
 
